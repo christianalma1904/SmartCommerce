@@ -16,15 +16,10 @@ SmartCommerce propone una aplicación web para una pequeña tienda de una sola s
 
 | Archivo | Contenido |
 |---|---|
-| [Planificación del software](docs/Planificacion_Unidad1.md) | problema, objetivos, disciplinas, 9 módulos, requisitos, alcance, arquitectura, pruebas y riesgos |
 | [Diagramas](diagramas/Diagramas_SmartCommerce.md) | arquitectura, flujo de compra, datos y estados del pedido |
-| [Guion de video](docs/Guion_Video.md) | narración sugerida de 4 minutos en 6 escenas |
-| [Evidencias de rúbrica](docs/Evidencias_Rubrica.md) | correspondencia con los criterios de evaluación |
-| [Preparar la entrega](docs/Como_Entregar.md) | exportación a PDF, grabación y verificación final |
 | [Propuesta de frontend](frontend/README.md) | interfaces, navegación y tecnología |
 | [Propuesta de backend](backend/README.md) | endpoints conceptuales, entidades y reglas críticas |
 
-> **Pendiente para entregar en el aula virtual:** exportar la planificación a **PDF**, personalizar los datos académicos y grabar el **video**. Los archivos Markdown publicados son documentación fuente; no reemplazan automáticamente el formato PDF solicitado.
 
 ## Usuarios
 
@@ -67,11 +62,6 @@ SmartCommerce propone una aplicación web para una pequeña tienda de una sola s
 SmartCommerce/
 ├── README.md
 ├── .gitignore
-├── docs/
-│   ├── Planificacion_Unidad1.md
-│   ├── Guion_Video.md
-│   ├── Evidencias_Rubrica.md
-│   └── Como_Entregar.md
 ├── diagramas/
 │   └── Diagramas_SmartCommerce.md
 ├── frontend/
@@ -91,9 +81,7 @@ SmartCommerce/
 
 ## Información académica
 
-**Estudiante:** [Completar]  
-**Asignatura:** [Completar]  
-**Docente:** [Completar]  
+**Estudiante:** Alcocer Christian  
+**Asignatura:** Programación Orientada a Objetos
+**Docente:** Avalos Hector  
 **Institución:** Universidad Internacional del Ecuador (UIDE).
-
-**Aviso:** este repositorio documenta la planeación. No afirma que la aplicación esté programada, desplegada ni validada con usuarios reales.
