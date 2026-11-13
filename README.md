@@ -82,6 +82,6 @@ SmartCommerce/
 ## Información académica
 
 **Estudiante:** Alcocer Christian  
-**Asignatura:** Programación Orientada a Objetos
+**Asignatura:** Programación Orientada a Objetos  
 **Docente:** Avalos Hector  
 **Institución:** Universidad Internacional del Ecuador (UIDE).
