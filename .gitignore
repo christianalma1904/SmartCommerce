@@ -20,3 +20,4 @@ Thumbs.db
 # local secrets
 *.pem
 *.key
+docs/
