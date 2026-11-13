@@ -43,4 +43,4 @@ Las rutas se revisarán al definir el contrato de API y **no constituyen endpoin
 ## Entidades
 Usuario, PerfilCliente, Categoria, Producto, Inventario, Carrito, ItemCarrito, Pedido, DetallePedido y PagoSimulado.
 
-Ver [planificación y requisitos](../docs/Planificacion_Unidad1.md) y [modelo conceptual](../diagramas/Diagramas_SmartCommerce.md).
+Ver [modelo conceptual](../diagramas/Diagramas_SmartCommerce.md).

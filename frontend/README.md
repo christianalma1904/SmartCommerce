@@ -31,4 +31,4 @@
 ## Criterios preliminares
 Diseño adaptable desde 360 px, navegación mediante teclado en acciones principales y estados de carga/error explícitos.
 
-Ver la [planificación](../docs/Planificacion_Unidad1.md) y los [diagramas](../diagramas/Diagramas_SmartCommerce.md).
+Ver los [diagramas](../diagramas/Diagramas_SmartCommerce.md).
