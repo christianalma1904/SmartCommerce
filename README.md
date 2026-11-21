@@ -74,7 +74,6 @@ SmartCommerce/
 │   ├── styles.css
 │   └── app.js
 ├── docs/
-│   ├── Guiones_Autonomo2.md
 │   └── Registro_Pruebas.md
 └── diagramas/                    # diagramas de la Unidad 1 (si están presentes)
 ```
