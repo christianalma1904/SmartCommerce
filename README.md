@@ -78,12 +78,6 @@ SmartCommerce/
 └── diagramas/                    # diagramas de la Unidad 1 (si están presentes)
 ```
 
-## 🔄 Relación con la Unidad 1
-
-La **planificación inicial** propuso React + TypeScript, Django REST Framework y PostgreSQL. Para esta **entrega intermedia de POO**, se implementó un **prototipo autónomo con Python estándar, JavaScript y SQLite**, priorizando clases, encapsulación, errores y una demostración reproducible. **No se afirma que el stack de producción esté terminado**. En una próxima etapa se podría conservar el núcleo de negocio y migrar a la arquitectura propuesta inicialmente.
-
-**Funcionalidades pendientes:** usuarios y autorización real, edición/eliminación de catálogo, flujo logístico, integración React/Django/PostgreSQL, pruebas de seguridad y despliegue seguro.
-
 ## 📌 Documentación de referencia
 
 - [Python — ABC / Abstract Base Classes](https://docs.python.org/3/library/abc.html)
