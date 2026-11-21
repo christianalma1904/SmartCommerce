@@ -1,4 +1,4 @@
-# SmartCommerce 🛍️ — Aprendizaje Autónomo 2
+# SmartCommerce 🛍️ — Final
 
 **UIDE · Ingeniería en Software · Programación orientada a objetos**  
 **Autor:** Christian Daniel Alcocer Marroquín  
