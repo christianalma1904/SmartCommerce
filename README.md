@@ -1,87 +1,102 @@
-# SmartCommerce 🛒
+# SmartCommerce 🛍️ — Aprendizaje Autónomo 2
 
-**Sistema de Gestión de E-commerce para pequeñas empresas**  
-**Universidad Internacional del Ecuador · Ingeniería en Software · Unidad 1**  
-**Estado:** Etapa 1 — Planeación del software (**implementación pendiente**).
+**UIDE · Ingeniería en Software · Programación orientada a objetos**  
+**Autor:** Christian Daniel Alcocer Marroquín  
+**Proyecto:** Sistema de Gestión de E-commerce  
+**Versión:** 0.2 — prototipo funcional local (no producción)
 
-## ¿Qué es SmartCommerce?
+## ¿Qué se desarrolló?
 
-SmartCommerce propone una aplicación web para una pequeña tienda de una sola sede. Permitirá centralizar catálogo, categorías, inventario, clientes, carrito de compras, pedidos, pagos **simulados** e indicadores administrativos.
+Este proyecto continúa la planeación de SmartCommerce presentada en la Unidad 1 y agrega un **avance funcional real** con Python orientado a objetos, una interfaz web y una base de datos SQLite persistente.
 
-**Situación problemática:** cuando los datos de productos, existencias y pedidos se llevan por separado, aumenta el riesgo de inconsistencias y se dificulta el seguimiento. Se plantea como caso académico hipotético, no como un estudio de una empresa real.
+**Puedes demostrar:** catálogo, filtrado, carrito, pago ficticio aprobado/rechazado, registro de pedidos, descuento de inventario, cancelación con devolución de stock, altas de productos y dashboard de ventas simuladas.
 
-**Objetivo general:** definir alcance, módulos, arquitectura y reglas verificables para orientar un desarrollo posterior.
+![Estado](https://img.shields.io/badge/Estado-prototipo%20acad%C3%A9mico-790a41?style=flat-square) ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square)
 
-## Documentación de la Unidad 1
+> **Seguridad y alcance:** funciona **solo en tu equipo** (`127.0.0.1`). No tiene cuentas ni permisos de administrador implementados, pasarela de pago, facturación o despacho. Los botones del panel administrativo son de uso demostrativo; **no lo publiques en Internet**.
 
-| Archivo | Contenido |
-|---|---|
-| [Diagramas](diagramas/Diagramas_SmartCommerce.md) | arquitectura, flujo de compra, datos y estados del pedido |
-| [Propuesta de frontend](frontend/README.md) | interfaces, navegación y tecnología |
-| [Propuesta de backend](backend/README.md) | endpoints conceptuales, entidades y reglas críticas |
+## 🚀 Ejecutarlo en Windows
 
+**Requisito:** Python 3.10 o posterior, instalado y disponible en el comando `python`.
 
-## Usuarios
+1. Descarga o clona el repositorio de GitHub.
+2. Abre la carpeta `SmartCommerce` en tu equipo.
+3. Haz doble clic en **`run.bat`** (o ejecuta `python backend/servidor.py` en una terminal).
+4. Abre **http://127.0.0.1:8000** en tu navegador.
+5. Para detenerlo, regresa a la terminal y presiona **Ctrl+C**.
 
-- **Visitante:** ve catálogo y categorías.
-- **Cliente:** mantiene perfil, carrito e historial de pedidos; realiza un pago ficticio.
-- **Administrador:** gestiona productos, categorías, inventario, pedidos e indicadores.
+**No necesitas instalar paquetes externos.** En el primer inicio se crea `backend/datos_smartcommerce.db` con ocho productos de prueba. El archivo de datos está excluido de Git mediante `.gitignore`.
 
-## Nueve módulos
+### Probar el avance
 
-| Código | Módulo | Función principal |
+1. Abre **Catálogo** y busca / filtra un producto.
+2. Haz clic en **+** para agregarlo al carrito.
+3. Abre **Carrito**, ingresa un nombre y elige pago ficticio **APROBADO**. Confirma.
+4. Ve a **Administración**: observa el pedido, el ingreso simulado y el stock reducido.
+5. Cancela el pedido: la cantidad debe reponerse y dejar de contar como venta.
+6. Agrega un producto nuevo y modifica su inventario.
+7. Crea otra compra con pago **RECHAZADO**: el stock no debe reducirse.
+
+**Pruebas automáticas:** ejecuta `test.bat` o `python -m unittest discover -s backend/tests -p "test_*.py" -v`.
+
+## 🧩 Programación orientada a objetos
+
+| Elemento | Clase / archivo | Evidencia |
 |---|---|---|
-| M01 | Acceso y roles | registro, inicio de sesión y permisos |
-| M02 | Productos | catálogo, edición y búsquedas |
-| M03 | Categorías | organización y filtrado |
-| M04 | Inventario | cantidades y alertas |
-| M05 | Clientes | perfil propio |
-| M06 | Carrito | selección y cantidades |
-| M07 | Pedidos | creación, consulta y estados |
-| M08 | Pago simulado | aprobación o rechazo ficticio |
-| M09 | Dashboard | ventas simuladas y alertas |
+| Clase y encapsulación | `Producto`, `backend/smartcommerce/modelos.py` | atributos privados y métodos validados |
+| Estructura de datos | `Carrito` | diccionario privado `{producto_id: cantidad}` con protección contra cambios externos |
+| Interfaz abstracta | `RepositorioTienda`, `contratos.py` | métodos abstractos con `ABC` y `abstractmethod` |
+| Polimorfismo | `RepositorioSQLite` implementa `RepositorioTienda` | el servicio depende del contrato, no de la clase concreta |
+| Lógica de negocio | `ServicioTienda`, `servicios.py` | coordina validaciones y flujo del caso de uso |
+| Excepciones | `ErrorValidacion`, `SinExistencias`, etc. | mensajes controlados y respuestas 400/404/409 |
+| Interfaz gráfica | `frontend/index.html`, `app.js`, `styles.css` | catálogo, carrito y administración web |
+| Persistencia | `repositorio_sqlite.py` | pedidos, productos e inventario en SQLite |
+| Regla compleja | `RepositorioSQLite.comprar` | compra y reducción de stock en transacción |
 
-## Alcance
-
-**Incluye:** una tienda, dos roles autenticados, productos físicos, USD, catálogo, carrito, inventario, pedidos, pago ficticio y dashboard básico.
-
-**No incluye:** dinero real, datos de tarjetas, facturación electrónica oficial, transporte, múltiples sucursales, marketplace, app móvil nativa ni IA.
-
-## Arquitectura propuesta
-
-- **Frontend:** React + TypeScript.
-- **Backend:** Python + Django REST Framework.
-- **Base de datos:** PostgreSQL.
-- **Versionado:** Git y GitHub.
-
-**Regla central:** añadir al carrito no reserva stock. El backend revalida precios y existencias al confirmar. Solo una aprobación **simulada** con inventario disponible puede confirmar un pedido y descontar unidades en la misma transacción. Una cancelación repone stock como máximo una vez.
-
-## Estructura
+## 🗂️ Archivos principales
 
 ```text
 SmartCommerce/
 ├── README.md
-├── .gitignore
-├── diagramas/
-│   └── Diagramas_SmartCommerce.md
+├── run.bat                        # iniciar el prototipo
+├── test.bat                       # ejecutar pruebas
+├── backend/
+│   ├── servidor.py                # servidor local HTTP y API JSON
+│   ├── smartcommerce/
+│   │   ├── modelos.py             # Producto y Carrito
+│   │   ├── contratos.py           # interfaz abstracta del repositorio
+│   │   ├── errores.py             # excepciones de negocio
+│   │   ├── servicios.py           # lógica de aplicación
+│   │   └── repositorio_sqlite.py  # persistencia y transacciones
+│   └── tests/test_smartcommerce.py
 ├── frontend/
-│   └── README.md
-└── backend/
-    └── README.md
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+├── docs/
+│   ├── Autonomo2_Avance.md
+│   ├── Guiones_Autonomo2.md
+│   └── Registro_Pruebas.md
+└── diagramas/                    # diagramas de la Unidad 1 (si están presentes)
 ```
 
-## Etapas futuras
+## 📚 Entregables académicos
 
-1. Planeación y especificación (actual).
-2. Prototipos, diseño de datos y API.
-3. Implementación de acceso y catálogo.
-4. Implementación de inventario y flujo de compra.
-5. Pruebas funcionales, seguridad y dashboard.
-6. Demostración y revisión académica.
+- [Informe de avance, clases, postura y rúbrica](docs/Autonomo2_Avance.md)
+- [Guiones de los dos videos](docs/Guiones_Autonomo2.md)
+- [Pruebas y evidencias](docs/Registro_Pruebas.md)
+- Código fuente de la interfaz y la lógica POO en este repositorio.
 
-## Información académica
+## 🔄 Relación con la Unidad 1
 
-**Estudiante:** Alcocer Christian  
-**Asignatura:** Programación Orientada a Objetos  
-**Docente:** Avalos Hector  
-**Institución:** Universidad Internacional del Ecuador (UIDE).
+La **planificación inicial** propuso React + TypeScript, Django REST Framework y PostgreSQL. Para esta **entrega intermedia de POO**, se implementó un **prototipo autónomo con Python estándar, JavaScript y SQLite**, priorizando clases, encapsulación, errores y una demostración reproducible. **No se afirma que el stack de producción esté terminado**. En una próxima etapa se podría conservar el núcleo de negocio y migrar a la arquitectura propuesta inicialmente.
+
+**Funcionalidades pendientes:** usuarios y autorización real, edición/eliminación de catálogo, flujo logístico, integración React/Django/PostgreSQL, pruebas de seguridad y despliegue seguro.
+
+## 📌 Documentación de referencia
+
+- [Python — ABC / Abstract Base Classes](https://docs.python.org/3/library/abc.html)
+- [Python — sqlite3](https://docs.python.org/3/library/sqlite3.html)
+- [OWASP Top 10:2025](https://owasp.org/projects/Top-Ten)
+
+Licencia y publicación sujetos a las directrices académicas del curso. **Prototipo de aprendizaje — no procesar compras ni información de personas reales.**

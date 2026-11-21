@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Prototipo académico SmartCommerce — POO e interfaces">
+  <title>SmartCommerce | Prototipo académico</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="#catalogo" aria-label="SmartCommerce inicio"><span class="brand-symbol">S</span><span>Smart<span class="accent">Commerce</span><small>PROTOTIPO · UNIDAD 2</small></span></a>
+    <nav class="navigation" aria-label="Navegación principal">
+      <button class="nav-btn active" data-view="catalogo">Catálogo</button>
+      <button class="nav-btn" data-view="carrito">Carrito <span id="cart-count" class="bubble">0</span></button>
+      <button class="nav-btn" data-view="admin">Administración</button>
+    </nav>
+  </header>
+  <main class="wrapper">
+    <div class="demo-banner"><span>●</span> Entorno de demostración local · datos ficticios · pagos simulados · sin autenticación de administrador</div>
+
+    <section id="catalogo" class="view">
+      <div class="hero">
+        <div class="hero-main"><div class="eyebrow">TU TIENDA, MÁS ORGANIZADA</div><h1>Una mejor forma de <em>gestionar y comprar.</em></h1><p>Explora nuestro catálogo de demostración y comprueba la integración del carrito, inventario y pedidos.</p><div class="hero-meta"><span>✓ Inventario en tiempo real</span><span>✓ Pagos simulados</span><span>✓ Datos persistentes</span></div></div>
+        <div class="hero-art" aria-hidden="true"><div class="hero-orbit"></div><div class="art-bag">🛍️</div><div class="art-card top">📦 <b>Productos</b></div><div class="art-card bottom">📊 <b>Indicadores</b></div></div>
+      </div>
+      <div class="section-heading"><div><div class="eyebrow">COLECCIÓN DE PRUEBA</div><h2>Catálogo de productos</h2><p>Selecciona productos para iniciar una compra demostrativa.</p></div><span id="product-counter" class="count-label"></span></div>
+      <div class="filters"><label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar productos..." aria-label="Buscar productos"></label><label class="select-box">Categoría <select id="category-filter"><option value="">Todas las categorías</option></select></label></div>
+      <div id="products" class="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="carrito" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">PROCESO DE COMPRA</div><h2>Tu carrito</h2><p>El carrito no reserva inventario; el stock se comprueba al confirmar.</p></div></div>
+      <div class="cart-layout"><div id="cart-items" class="panel"></div><div class="panel summary-panel"><h3>Resumen</h3><div class="summary-total"><span>Total estimado</span><strong id="cart-total">$0.00</strong></div><form id="checkout-form"><label>Nombre del cliente<input id="customer" type="text" minlength="2" maxlength="70" placeholder="Ej. Cliente de prueba" required></label><label>Resultado de pago (simulado)<select id="payment"><option value="APROBADO">✓ Simular aprobación</option><option value="RECHAZADO">✕ Simular rechazo</option></select></label><button id="checkout" class="btn-primary" type="submit">Confirmar compra simulada</button></form><p class="small-note">No se ingresa información de tarjetas ni se cobra dinero real.</p></div></div>
+    </section>
+
+    <section id="admin" class="view hidden">
+      <div class="section-heading"><div><div class="eyebrow">GESTIÓN Y ANÁLISIS</div><h2>Panel administrativo</h2><p>Interfaz de prueba para demostrar inventario, pedidos e indicadores.</p></div><button id="refresh-admin" class="btn-outline">Actualizar datos</button></div>
+      <div class="stats-grid"><article class="stat"><span>Productos</span><strong id="stat-products">—</strong><small>En el catálogo</small></article><article class="stat"><span>Pedidos confirmados</span><strong id="stat-orders">—</strong><small>Excluye rechazados y cancelados</small></article><article class="stat"><span>Ventas simuladas</span><strong id="stat-revenue">—</strong><small>USD · sin cobro real</small></article><article class="stat"><span>Alertas de stock bajo</span><strong id="stat-alerts">—</strong><small>5 unidades o menos</small></article></div>
+      <div class="admin-grid"><div class="panel"><div class="panel-title"><h3>Inventario</h3><span class="tag">Editable</span></div><p class="helper">Cambia una cantidad y presiona Guardar. No se permiten valores negativos.</p><div id="inventory-list" class="inventory-list"></div></div><div class="panel"><div class="panel-title"><h3>Crear producto</h3><span class="tag">POO</span></div><form id="add-product-form" class="stack"><label>Nombre del producto<input type="text" id="new-name" maxlength="90" required placeholder="Ej. Adaptador USB"></label><label>Categoría<select id="new-category" required></select></label><div class="two-cols"><label>Precio (USD)<input type="number" id="new-price" min="0.01" step="0.01" required placeholder="12.99"></label><label>Stock inicial<input type="number" id="new-stock" min="0" step="1" required placeholder="10"></label></div><button type="submit" class="btn-primary">Registrar producto</button></form></div></div>
+      <div class="panel orders-panel"><div class="panel-title"><h3>Historial de pedidos</h3><span class="tag">Persistente</span></div><div id="order-list"></div></div>
+    </section>
+  </main>
+  <footer class="footer"><span>SmartCommerce · Proyecto académico UIDE</span><span>Python POO · SQLite · JavaScript | Versión de demostración</span></footer>
+  <div id="toast" role="status" aria-live="polite" class="toast" hidden></div>
+</body>
+</html>
