@@ -74,18 +74,10 @@ SmartCommerce/
 │   ├── styles.css
 │   └── app.js
 ├── docs/
-│   ├── Autonomo2_Avance.md
 │   ├── Guiones_Autonomo2.md
 │   └── Registro_Pruebas.md
 └── diagramas/                    # diagramas de la Unidad 1 (si están presentes)
 ```
-
-## 📚 Entregables académicos
-
-- [Informe de avance, clases, postura y rúbrica](docs/Autonomo2_Avance.md)
-- [Guiones de los dos videos](docs/Guiones_Autonomo2.md)
-- [Pruebas y evidencias](docs/Registro_Pruebas.md)
-- Código fuente de la interfaz y la lógica POO en este repositorio.
 
 ## 🔄 Relación con la Unidad 1
 
@@ -98,5 +90,3 @@ La **planificación inicial** propuso React + TypeScript, Django REST Framework 
 - [Python — ABC / Abstract Base Classes](https://docs.python.org/3/library/abc.html)
 - [Python — sqlite3](https://docs.python.org/3/library/sqlite3.html)
 - [OWASP Top 10:2025](https://owasp.org/projects/Top-Ten)
-
-Licencia y publicación sujetos a las directrices académicas del curso. **Prototipo de aprendizaje — no procesar compras ni información de personas reales.**
