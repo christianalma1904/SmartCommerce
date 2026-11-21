@@ -3,7 +3,7 @@
 Se utiliza una transacción BEGIN IMMEDIATE en compras/cancelaciones:
 validación + actualización de existencias + pedido forman una unidad indivisible.
 """
-from contextlib import contextmanager
+from contextlib import closing, contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 import sqlite3
@@ -98,14 +98,14 @@ class RepositorioSQLite(RepositorioTienda):
                         fila["precio_centavos"], fila["stock"]).como_dict()
 
     def listar_productos(self) -> list[dict]:
-        with self._conexion() as conn:
+        with closing(self._conexion()) as conn:
             filas = conn.execute("""SELECT p.id,p.nombre,c.nombre AS categoria,
                 p.precio_centavos,p.stock FROM productos p
                 INNER JOIN categorias c ON c.id=p.categoria_id ORDER BY p.id""").fetchall()
             return [self._producto(f) for f in filas]
 
     def listar_categorias(self) -> list[dict]:
-        with self._conexion() as conn:
+        with closing(self._conexion()) as conn:
             return [dict(f) for f in conn.execute("SELECT id,nombre FROM categorias ORDER BY id")]
 
     def crear_producto(self, nombre, categoria_id, precio_centavos, stock) -> dict:
@@ -168,7 +168,7 @@ class RepositorioSQLite(RepositorioTienda):
                     "total_centavos": total, "detalles": detalles}
 
     def listar_pedidos(self) -> list[dict]:
-        with self._conexion() as conn:
+        with closing(self._conexion()) as conn:
             pedidos = [dict(r) for r in conn.execute(
                 "SELECT id,cliente,estado,total_centavos,fecha FROM pedidos ORDER BY id DESC")]
             for pedido in pedidos:
@@ -194,7 +194,7 @@ class RepositorioSQLite(RepositorioTienda):
         return {"id": pedido_id, "estado": "CANCELADO"}
 
     def indicadores(self) -> dict:
-        with self._conexion() as conn:
+        with closing(self._conexion()) as conn:
             confirmado = conn.execute("""SELECT COUNT(*),COALESCE(SUM(total_centavos),0)
                 FROM pedidos WHERE estado='CONFIRMADO'""").fetchone()
             otros = conn.execute("""SELECT estado,COUNT(*) AS cantidad FROM pedidos

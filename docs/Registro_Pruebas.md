@@ -18,11 +18,12 @@
 | `test_stock_insuficiente_rollback` | error controlado, sin pedido parcial |
 | `test_cancelacion_repone_una_sola_vez` | reembolso de inventario idempotente |
 | `test_validaciones_solicitudes` | errores ante datos inválidos |
+| `test_dos_compras_simultaneas_no_sobrevenden` | solo se confirma una compra cuando dos clientes compiten por stock 5 |
 | `test_precios_historicos_conservados` | detalle del pedido conserva valor histórico |
 
 ## Resultados
 
-En el entorno de elaboración, **11 pruebas de 11 superadas** tras corregir el manejo inicial de transacciones de creación de esquema. Esta corrección es parte del aprendizaje: la ejecución de `executescript` maneja el estado transaccional de forma distinta al uso de `BEGIN IMMEDIATE` empleado en las compras.
+En el entorno de elaboración, **12 pruebas de 11 superadas** tras corregir el manejo inicial de transacciones de creación de esquema. Esta corrección es parte del aprendizaje: la ejecución de `executescript` maneja el estado transaccional de forma distinta al uso de `BEGIN IMMEDIATE` empleado en las compras.
 
 **Alcance de la evidencia:** estas pruebas comprueban la capa de dominio y persistencia, no equivalen a un análisis exhaustivo de seguridad, carga, accesibilidad, experiencia de usuario o compatibilidad entre navegadores. Debe grabarse además la interfaz funcionando para completar la entrega del docente.
 

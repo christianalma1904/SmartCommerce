@@ -78,7 +78,7 @@ Los comentarios del código explican por qué se usa `BEGIN IMMEDIATE` para impe
 
 ## 3. Pruebas y evaluación
 
-Las **11 pruebas automáticas** de `backend/tests/test_smartcommerce.py` cubren encapsulación, interfaz abstracta, estructura de carrito, catálogo, creación de productos, actualización de stock, compra aprobada/rechazada, insuficiencia de stock, cancelación, validaciones y precio histórico. Se ejecutan con `test.bat` o con `python -m unittest discover -s backend/tests -p 'test_*.py' -v`.
+Las **12 pruebas automáticas** de `backend/tests/test_smartcommerce.py` cubren encapsulación, interfaz abstracta, estructura de carrito, catálogo, creación de productos, actualización de stock, compra aprobada/rechazada, insuficiencia de stock, cancelación, validaciones y precio histórico. Se ejecutan con `test.bat` o con `python -m unittest discover -s backend/tests -p 'test_*.py' -v`.
 
 **Evidencias objetivas:** las pruebas no sustituyen las pruebas de carga, seguridad o aceptación de usuarios. Consulta [Registro_Pruebas.md](Registro_Pruebas.md).
 

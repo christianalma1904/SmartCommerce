@@ -1,34 +1,16 @@
-# Frontend — SmartCommerce
+# Frontend del prototipo SmartCommerce v0.2
 
-**Estado:** planeado; no existe aún una aplicación ejecutable.
+**Estado:** interfaz web **funcional de demostración**, en HTML, CSS y JavaScript sin librerías externas.
 
-## Tecnología propuesta
-- React
-- TypeScript
-- CSS adaptable (estilos a definir durante el diseño de interfaz)
-- Consumo de API REST del backend
+## Archivos implementados
+- `index.html`: vistas de catálogo, carrito y administración.
+- `styles.css`: diseño adaptable y estilos.
+- `app.js`: búsqueda, filtros, carrito con `Map`, peticiones JSON, pedidos, inventario y dashboard.
 
-## Pantallas previstas
-| Vista | Usuario | Propósito |
-|---|---|---|
-| Inicio y catálogo | visitante / cliente | consultar y buscar productos |
-| Detalle del producto | visitante / cliente | conocer precio y disponibilidad |
-| Registro / inicio de sesión | visitante | crear cuenta y acceder |
-| Carrito | cliente | revisar productos, cantidades y totales |
-| Confirmación de compra | cliente | efectuar pago simulado |
-| Mis pedidos | cliente | consultar historial y estados |
-| Perfil | cliente | actualizar datos propios |
-| Panel administrativo | administrador | ver métricas generales |
-| Gestión de productos | administrador | crear, actualizar, desactivar |
-| Inventario y pedidos | administrador | ajustar stock y administrar estados |
+## Cómo probar
+Desde la raíz, inicia `run.bat` o `python backend/servidor.py`, luego abre <http://127.0.0.1:8000>. No abras `index.html` directamente: se requieren las rutas API del servidor Python.
 
-## Reglas de interacción
-- Las acciones administrativas deben estar restringidas **también en backend**.
-- La interfaz debe mostrar mensajes cuando cambie el precio o las existencias.
-- Agregar al carrito no reserva stock.
-- Las métricas y pagos serán **simulados**, no cobros reales.
+## Alcance y próxima etapa
+Se usa JavaScript simple para que el avance de POO sea ejecutable sin instalar Node. La planificación original propone **React + TypeScript** para una versión posterior. Las acciones de administración no están autenticadas, por lo que **solo puede usarse localmente**.
 
-## Criterios preliminares
-Diseño adaptable desde 360 px, navegación mediante teclado en acciones principales y estados de carga/error explícitos.
-
-Ver los [diagramas](../diagramas/Diagramas_SmartCommerce.md).
+Consulta el [informe de avance](../docs/Autonomo2_Avance.md) y el [guion de demostración](../docs/Guiones_Autonomo2.md).

@@ -1,5 +1,6 @@
 """Pruebas de encapsulación, interfaces, integridad y errores (unittest)."""
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import unittest
@@ -93,6 +94,24 @@ class TestServicio(unittest.TestCase):
             self.s.cancelar(9999)
         with self.assertRaises(ErrorValidacion):
             self.s.agregar_producto("Mesa", 1, -5, 4)
+
+    def test_dos_compras_simultaneas_no_sobrevenden(self):
+        """Dos compradores de 4 unidades compiten por un stock de 5."""
+        self.s.actualizar_stock(1, 5)
+
+        def comprar(indice):
+            try:
+                self.s.confirmar_compra(f"Cliente {indice}",
+                                        [{"producto_id": 1, "cantidad": 4}], "APROBADO")
+                return "confirmado"
+            except SinExistencias:
+                return "rechazado_stock"
+
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            resultados = list(executor.map(comprar, [1, 2]))
+        self.assertCountEqual(resultados, ["confirmado", "rechazado_stock"])
+        self.assertEqual(self.s.productos()[0]["stock"], 1)
+        self.assertEqual(self.s.resumen()["pedidos_confirmados"], 1)
 
     def test_precios_historicos_conservados(self):
         pedido = self.s.confirmar_compra("Cliente", [{"producto_id": 1, "cantidad": 1}], "APROBADO")
